@@ -102,7 +102,7 @@ export default {
 .sorting-trainer {
   margin: 20px auto;
   text-align: center;
-  max-width: 900px;
+  max-width: 1050px;
 }
 
 .header {
@@ -119,13 +119,13 @@ export default {
 }
 
 .start-button {
-  background-color: #f8b400;
+  background-color: #ff8d00;
   border: none;
   color: white;
   padding: 10px 20px;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .start-button:hover {
@@ -134,6 +134,8 @@ export default {
 
 .sorting-container {
   margin-top: 20px;
+  box-shadow: 0px 4px 4px 0px #00000040;
+  border-top: 1px solid #dddddd;
 }
 
 .sorting-header {
@@ -141,5 +143,13 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
+}
+.sorting-header p {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.people-timer {
+  color: #000000;
 }
 </style>

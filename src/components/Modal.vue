@@ -10,24 +10,25 @@
 
       <div class="border"></div>
 
-      
       <div class="text-input">
-        <p class="modal-text">Enter a number of how many people you want to add to the list.</p>
+        <p class="modal-text">
+          Enter a number of how many people you want to add to the list.
+        </p>
         <input
-        type="number"
-        v-model.number="peopleCount"
-        min="5"
-        max="100"
-        placeholder="Enter number of people"
-        class="modal-input"
-      />
+          type="number"
+          v-model.number="peopleCount"
+          min="5"
+          max="100"
+          placeholder="Enter number of people"
+          class="modal-input"
+        />
       </div>
 
       <div class="border"></div>
       <div class="modal-buttons">
         <button class="cancel-button" @click="close">Cancel</button>
         <button
-          class="start-button"
+          class="modal-start-button"
           @click="startSorting"
           :disabled="!isPeopleCountValid"
         >
@@ -127,7 +128,6 @@ export default {
   padding: 20px 20px 49px 20px;
 }
 
-
 .modal-text {
   font-weight: 400;
   font-size: 13px;
@@ -137,7 +137,7 @@ export default {
 }
 
 .border {
-  border-top: 1px solid #CCCCCC;
+  border-top: 1px solid #cccccc;
 }
 
 .modal-buttons {
@@ -149,7 +149,7 @@ export default {
 
 .modal-input {
   width: 95%;
-  border: 1px solid #CCCCCC;
+  border: 1px solid #cccccc;
   height: 40px;
   border-radius: 5px;
   font-size: 13px;
@@ -158,7 +158,7 @@ export default {
   padding-left: 13px;
 }
 
-.start-button,
+.modal-start-button,
 .cancel-button {
   padding: 10px 20px;
   border-radius: 5px;
@@ -166,23 +166,24 @@ export default {
   cursor: pointer;
 }
 
-.start-button:disabled {
+.modal-start-button:disabled {
   background-color: #ccc;
   cursor: not-allowed;
 }
 
-.start-button {
-  background-color: #FF8D00;
-  color: #FFFFFF;
-  padding: 12px 23px;
+.modal-start-button {
+  background-color: #ff8d00;
+  color: #ffffff;
+  padding: 15px 35px;
+  font-weight: 700;
 }
 
-.start-button:hover {
+.modal-start-button:hover {
   background-color: #d49a00;
 }
 
 .cancel-button {
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
   color: #555555;
   padding: 12px 22px;
 }

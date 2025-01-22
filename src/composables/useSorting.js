@@ -40,17 +40,22 @@ export function usePeople() {
     const uniquePotatoes = Array.from({ length: count }, (_, i) => i + 1).sort(
       () => Math.random() - 0.5
     )
-    people.value = Array.from({ length: count }, () => ({
-      id: nanoid(),
-      email: faker.internet.email(),
-      fullName: faker.name.findName(),
-      location: faker.address.cityName(),
-      tags: faker.helpers.arrayElements(
-        ['Friend', 'Colleague', 'Family', 'Acquaintance'],
-        2
-      ),
-      potatoes: uniquePotatoes.pop(),
-    }))
+    people.value = Array.from({ length: count }, () => {
+      // Generate a random number of tags between 1 and 3
+      const randomTagCount = faker.datatype.number({ min: 1, max: 3 })
+
+      return {
+        id: nanoid(),
+        email: faker.internet.email(),
+        fullName: faker.name.findName(),
+        location: faker.address.cityName(),
+        tags: faker.helpers.arrayElements(
+          ['Customers', 'VIP', 'Oldtimer'],
+          randomTagCount // Use the random tag count here
+        ),
+        potatoes: uniquePotatoes.pop(),
+      }
+    })
   }
 
   const isSorted = (arr) => {

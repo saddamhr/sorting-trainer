@@ -1,9 +1,8 @@
-<!-- components/SortableTable.vue -->
 <template>
   <table>
     <thead>
       <tr>
-        <th>Email</th>
+        <th class="mail-header">Email</th>
         <th>Potatoes</th>
         <th>Tags</th>
         <th>Full Name</th>
@@ -11,19 +10,49 @@
       </tr>
     </thead>
     <draggable :list="items" tag="tbody" group="items" @end="onSortEnd">
-      <template #item="{ element }">
-        <tr>
-          <td>{{ element.email }}</td>
-          <td>{{ element.potatoes }}</td>
-          <td>
-            <div class="tags">
-              <span class="tag" v-for="tag in element.tags" :key="tag">{{
-                tag
-              }}</span>
+      <template #item="{ element, index }">
+        <tr :class="{ 'row-checked': checkedRows[index] }">
+          <td class="mail-data">
+            <div class="email-column">
+              <div class="mail-checkbox-container">
+                <input
+                  class="email-checkbox"
+                  type="checkbox"
+                  v-model="checkedRows[index]"
+                  @change="toggleRow(index)"
+                />
+                <span class="value">
+                  {{ element.email }}
+                </span>
+              </div>
+              <div>
+                <img :src="arrowIcon" alt="Email Arrow Icon" />
+              </div>
             </div>
           </td>
-          <td>{{ element.fullName }}</td>
-          <td>{{ element.location }}</td>
+          <td class="other-cols">
+            <span class="value">{{ element.potatoes }}</span>
+          </td>
+          <td  class="other-cols">
+            <div class="tags">
+              <span
+                class="tag"
+                v-for="(tag, tagIndex) in element.tags.slice(0, 2)"
+                :key="tag"
+                >{{ tag }}</span
+              >
+              <span v-if="element.tags.length > 2" class="extra-tags">
+                +{{ element.tags.length - 2 }}
+              </span>
+            </div>
+          </td>
+
+          <td  class="other-cols">
+            <span class="value">{{ element.fullName }}</span>
+          </td>
+          <td  class="other-cols">
+            <span class="value">{{ element.location }}</span>
+          </td>
         </tr>
       </template>
     </draggable>
@@ -32,6 +61,7 @@
 
 <script>
 import draggable from 'vuedraggable'
+import ArrowIcon from './../assets/icons/arrow.svg'
 
 export default {
   props: {
@@ -40,13 +70,19 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      checkedRows: this.items.map(() => false),
+      arrowIcon: ArrowIcon,
+    }
+  },
   methods: {
     onSortEnd() {
-      // Emit the updated list to the parent component
       this.$emit('update:items', this.items)
-
-      // After sorting ends, notify the parent to check if the list is sorted
       this.$emit('checkSorted')
+    },
+    toggleRow(index) {
+      this.$set(this.checkedRows, index, !this.checkedRows[index])
     },
   },
   components: {
@@ -64,14 +100,14 @@ table {
 
 th,
 td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
+  padding: 15px 20px;
+  text-align: left;
 }
 
 th {
-  background-color: #f8b400;
-  color: white;
+  font-size: 14px;
+  font-weight: 400;
+  color: #555555;
 }
 
 .tags {
@@ -80,8 +116,87 @@ th {
 }
 
 .tag {
-  background: #e0e0e0;
-  border-radius: 3px;
-  padding: 3px 8px;
+  background: #eeeeee;
+  border-radius: 16px;
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #555555;
 }
+
+.extra-tags {
+  padding: 6px 10px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #555555;
+}
+
+.row-checked {
+  background-color: #f5f5f5;
+}
+.email-column {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mail-data {
+  width: 20rem;
+  border-right: 1px solid #ddd;
+}
+
+.other-cols {
+  min-width: 8rem;
+}
+
+tr {
+  border: 1px solid #ddd;
+}
+
+.mail-checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.email-checkbox {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #dddddd;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  transition: background-color 0.3s ease;
+}
+
+.email-checkbox:checked {
+  background-color: #ff8d00;
+  border-color: #ff8d00;
+}
+
+.email-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  text-align: center;
+  font-size: 16px;
+  color: white;
+  line-height: 20px;
+}
+
+.value {
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.mail-header {
+  border: 1px solid #ddd;
+}
+
 </style>
