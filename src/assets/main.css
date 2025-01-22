@@ -14,4 +14,8 @@
   --black-transparent: rgba(0, 0, 0, 0.5);
 
   --success-color: green;
+
+  --highlight-color: #d49a00;
+
+  --disabled-button-bg: #d49b007c;
 }

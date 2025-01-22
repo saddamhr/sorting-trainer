@@ -129,7 +129,7 @@ export default {
 }
 
 .start-button:hover {
-  background-color: #d49a00;
+  background-color: var(--highlight-color);
 }
 
 .sorting-container {

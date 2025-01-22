@@ -167,7 +167,7 @@ export default {
 }
 
 .modal-start-button:disabled {
-  background-color: var(----gray-medium);
+  background-color: var(--disabled-button-bg);
   cursor: not-allowed;
 }
 
@@ -178,8 +178,8 @@ export default {
   font-weight: 700;
 }
 
-.modal-start-button:hover {
-  background-color: #d49a00;
+.modal-start-button:hover:not(:disabled) {
+  background-color: var(--highlight-color);
 }
 
 .cancel-button {
