@@ -8,22 +8,9 @@
     <!-- Modal Component -->
     <Modal
       :isVisible="isModalVisible"
-      @update:isVisible="isModalVisible = $event"
-    >
-      <h2>How many people?</h2>
-      <p>Enter a number of how many people you want to add to the list.</p>
-      <input type="number" v-model.number="peopleCount" min="5" max="100" />
-      <div class="modal-buttons">
-        <button class="cancel-button" @click="closeModal">Cancel</button>
-        <button
-          class="start-button"
-          @click="startSorting"
-          :disabled="!isPeopleCountValid"
-        >
-          Start
-        </button>
-      </div>
-    </Modal>
+      :onClose="closeModal"
+      :onStart="startSorting"
+    />
 
     <div v-if="isSorting" class="sorting-container">
       <div class="sorting-header">
@@ -48,7 +35,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { usePeople, useTimer } from '../composables/useSorting'
 import Modal from './Modal.vue'
 import SuccessMessage from './SuccessMessage.vue'
@@ -61,16 +48,8 @@ export default {
     const isSorting = ref(false)
     const isSuccess = ref(false)
     const peopleCount = ref(20)
-
-    // Use the timer composable
     const { timer, formattedTime, startTimer, stopTimer } = useTimer()
-
-    // Use the people composable
     const { people, generatePeople, isSorted } = usePeople()
-
-    const isPeopleCountValid = computed(
-      () => peopleCount.value >= 5 && peopleCount.value <= 100
-    )
 
     const openModal = () => {
       isModalVisible.value = true
@@ -80,12 +59,13 @@ export default {
       isModalVisible.value = false
     }
 
-    const startSorting = () => {
+    const startSorting = (count) => {
       isModalVisible.value = false
       isSorting.value = true
       isSuccess.value = false
+      peopleCount.value = count
       timer.value = 0
-      generatePeople(peopleCount.value)
+      generatePeople(count)
       startTimer()
     }
 
@@ -108,7 +88,6 @@ export default {
       peopleCount,
       people,
       formattedTime,
-      isPeopleCountValid,
       openModal,
       closeModal,
       startSorting,
@@ -151,16 +130,6 @@ export default {
 
 .start-button:hover {
   background-color: #d49a00;
-}
-
-.cancel-button {
-  background-color: #cccccc;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
 }
 
 .sorting-container {
