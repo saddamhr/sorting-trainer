@@ -30,41 +30,15 @@
         <p>Time: {{ formattedTime }}</p>
         <p>{{ peopleCount }} people in the list</p>
       </div>
-      <table>
-        <thead>
-          <tr>
-            <th>Email</th>
-            <th>Potatoes</th>
-            <th>Tags</th>
-            <th>Full Name</th>
-            <th>Location</th>
-          </tr>
-        </thead>
-        <draggable
-          v-model="people"
-          tag="tbody"
-          group="people"
-          @end="checkIfSorted"
-        >
-          <template #item="{ element }">
-            <tr>
-              <td>{{ element.email }}</td>
-              <td>{{ element.potatoes }}</td>
-              <td>
-                <div class="tags">
-                  <span class="tag" v-for="tag in element.tags" :key="tag">{{
-                    tag
-                  }}</span>
-                </div>
-              </td>
-              <td>{{ element.fullName }}</td>
-              <td>{{ element.location }}</td>
-            </tr>
-          </template>
-        </draggable>
-      </table>
+
+      <!-- Reusable SortableTable Component -->
+      <SortableTable
+        :items="people"
+        @update:items="updatePeople"
+        @checkSorted="checkIfSorted"
+      />
     </div>
-        
+
     <SuccessMessage
       v-if="isSuccess"
       :title="'Congratulations! You sorted correctly!'"
@@ -72,16 +46,17 @@
     />
   </div>
 </template>
+
 <script>
 import { ref, computed } from 'vue'
 import { nanoid } from 'nanoid'
 import { faker } from '@faker-js/faker'
-import draggable from 'vuedraggable'
 import Modal from './components/Modal.vue'
 import SuccessMessage from './components/SuccessMessage.vue'
+import SortableTable from './components/SortableTable.vue'
 
 export default {
-  components: { draggable, Modal, SuccessMessage },
+  components: { Modal, SuccessMessage, SortableTable },
   setup() {
     const isModalVisible = ref(false)
     const isSorting = ref(false)
@@ -164,6 +139,10 @@ export default {
       }
     }
 
+    const updatePeople = (newPeople) => {
+      people.value = newPeople
+    }
+
     return {
       isModalVisible,
       isSorting,
@@ -177,6 +156,7 @@ export default {
       closeModal,
       startSorting,
       checkIfSorted,
+      updatePeople,
     }
   },
 }
@@ -261,35 +241,6 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th,
-td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  background-color: #f8b400;
-  color: white;
-}
-
-.tags {
-  display: flex;
-  gap: 5px;
-}
-
-.tag {
-  background: #e0e0e0;
-  border-radius: 3px;
-  padding: 3px 8px;
 }
 
 .success-message {
