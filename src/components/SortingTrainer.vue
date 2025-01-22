@@ -1,4 +1,3 @@
-<!-- SortingTrainer.vue -->
 <template>
   <div class="sorting-trainer">
     <div class="header">
@@ -50,8 +49,7 @@
 
 <script>
 import { ref, computed } from 'vue'
-import { nanoid } from 'nanoid'
-import { faker } from '@faker-js/faker'
+import { usePeople, useTimer } from '../composables/useSorting'
 import Modal from './Modal.vue'
 import SuccessMessage from './SuccessMessage.vue'
 import SortableTable from './SortableTable.vue'
@@ -63,15 +61,12 @@ export default {
     const isSorting = ref(false)
     const isSuccess = ref(false)
     const peopleCount = ref(20)
-    const timer = ref(0)
-    const timerInterval = ref(null)
-    const people = ref([])
 
-    const formattedTime = computed(() => {
-      const minutes = Math.floor(timer.value / 60)
-      const seconds = timer.value % 60
-      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
-    })
+    // Use the timer composable
+    const { timer, formattedTime, startTimer, stopTimer } = useTimer()
+
+    // Use the people composable
+    const { people, generatePeople, isSorted } = usePeople()
 
     const isPeopleCountValid = computed(
       () => peopleCount.value >= 5 && peopleCount.value <= 100
@@ -94,44 +89,6 @@ export default {
       startTimer()
     }
 
-    const startTimer = () => {
-      timerInterval.value = setInterval(() => {
-        timer.value += 1
-      }, 1000)
-    }
-
-    const stopTimer = () => {
-      clearInterval(timerInterval.value)
-      timerInterval.value = null
-    }
-
-    const generatePeople = (count) => {
-      const uniquePotatoes = Array.from(
-        { length: count },
-        (_, i) => i + 1
-      ).sort(() => Math.random() - 0.5)
-      people.value = Array.from({ length: count }, () => ({
-        id: nanoid(),
-        email: faker.internet.email(),
-        fullName: faker.name.findName(),
-        location: faker.address.cityName(),
-        tags: faker.helpers.arrayElements(
-          ['Friend', 'Colleague', 'Family', 'Acquaintance'],
-          2
-        ),
-        potatoes: uniquePotatoes.pop(),
-      }))
-    }
-
-    const isSorted = (arr) => {
-      for (let i = 0; i < arr.length - 1; i++) {
-        if (arr[i].potatoes > arr[i + 1].potatoes) {
-          return false
-        }
-      }
-      return true
-    }
-
     const checkIfSorted = () => {
       if (isSorted(people.value)) {
         stopTimer()
@@ -149,7 +106,6 @@ export default {
       isSorting,
       isSuccess,
       peopleCount,
-      timer,
       people,
       formattedTime,
       isPeopleCountValid,
@@ -175,21 +131,12 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+
 .header-title {
   font-weight: 700;
   size: 32px;
   color: #000000;
   font-family: 'Roboto', sans-serif;
-}
-
-.cancel-button {
-  background-color: #cccccc;
-  color: black;
-  padding: 10px 20px;
-  border-radius: 5px;
-  border: none;
-  margin-right: 10px;
-  cursor: pointer;
 }
 
 .start-button {
@@ -206,6 +153,16 @@ export default {
   background-color: #d49a00;
 }
 
+.cancel-button {
+  background-color: #cccccc;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border: none;
+  margin-right: 10px;
+  cursor: pointer;
+}
+
 .sorting-container {
   margin-top: 20px;
 }
@@ -215,11 +172,5 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 10px;
-}
-
-.success-message {
-  margin-top: 30px;
-  color: green;
-  font-size: 20px;
 }
 </style>
