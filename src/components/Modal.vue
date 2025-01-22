@@ -1,9 +1,9 @@
 <template>
-  <div v-if="isVisible" class="modal-overlay" @click.self="close">
+  <div v-if="isVisible" class="modal-overlay">
     <div class="modal-content">
       <div class="title-button-container">
         <h2 class="title">How many people?</h2>
-        <div @click="close">
+        <div class="close-modal" @click="close">
           <img :src="closeIcon" alt="Modal Close Icon" />
         </div>
       </div>
@@ -91,14 +91,14 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--black-transparent);
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .modal-content {
-  background-color: white;
+  background-color: var(--white);
   border-radius: 4px;
   position: relative;
   width: 437px;
@@ -113,7 +113,7 @@ export default {
 
 .title {
   margin: 0;
-  color: #000000;
+  color: var(--black);
   font-weight: 700;
   font-size: 18px;
 }
@@ -131,7 +131,7 @@ export default {
 .modal-text {
   font-weight: 400;
   font-size: 13px;
-  color: #555555;
+  color: var(--secondary-color);
   margin: 0px;
   text-align: left;
 }
@@ -153,7 +153,7 @@ export default {
   height: 40px;
   border-radius: 5px;
   font-size: 13px;
-  color: #000000;
+  color: var(--black);
   margin-top: 14px;
   padding-left: 13px;
 }
@@ -167,13 +167,13 @@ export default {
 }
 
 .modal-start-button:disabled {
-  background-color: #ccc;
+  background-color: var(----gray-medium);
   cursor: not-allowed;
 }
 
 .modal-start-button {
-  background-color: #ff8d00;
-  color: #ffffff;
+  background-color: var(--primary-color);
+  color: var(--white);
   padding: 15px 35px;
   font-weight: 700;
 }
@@ -183,8 +183,12 @@ export default {
 }
 
 .cancel-button {
-  background-color: #eeeeee;
-  color: #555555;
+  background-color: var(--gray-light);
+  color: var(--secondary-color);
   padding: 12px 22px;
+}
+
+.close-modal {
+  cursor: pointer;
 }
 </style>

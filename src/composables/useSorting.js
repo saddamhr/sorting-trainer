@@ -14,14 +14,18 @@ export function useTimer() {
   })
 
   const startTimer = () => {
-    timerInterval.value = setInterval(() => {
-      timer.value += 1
-    }, 1000)
+    if (timerInterval.value === null) {
+      timerInterval.value = setInterval(() => {
+        timer.value += 1
+      }, 1000)
+    }
   }
 
   const stopTimer = () => {
-    clearInterval(timerInterval.value)
-    timerInterval.value = null
+    if (timerInterval.value) {
+      clearInterval(timerInterval.value)
+      timerInterval.value = null
+    }
   }
 
   return {

@@ -33,7 +33,7 @@
           <td class="other-cols">
             <span class="value">{{ element.potatoes }}</span>
           </td>
-          <td  class="other-cols">
+          <td class="other-cols">
             <div class="tags">
               <span
                 class="tag"
@@ -47,10 +47,10 @@
             </div>
           </td>
 
-          <td  class="other-cols">
+          <td class="other-cols">
             <span class="value">{{ element.fullName }}</span>
           </td>
-          <td  class="other-cols">
+          <td class="other-cols">
             <span class="value">{{ element.location }}</span>
           </td>
         </tr>
@@ -75,6 +75,14 @@ export default {
       checkedRows: this.items.map(() => false),
       arrowIcon: ArrowIcon,
     }
+  },
+  watch: {
+    items(newItems) {
+      this.checkedRows = newItems.map(() => false)
+    },
+  },
+  created() {
+    this.checkedRows = this.items.map(() => false)
   },
   methods: {
     onSortEnd() {
@@ -107,7 +115,7 @@ td {
 th {
   font-size: 14px;
   font-weight: 400;
-  color: #555555;
+  color: var(--secondary-color);
 }
 
 .tags {
@@ -116,23 +124,23 @@ th {
 }
 
 .tag {
-  background: #eeeeee;
+  background: var(--gray-light);
   border-radius: 16px;
   padding: 6px 10px;
   font-size: 13px;
   font-weight: 400;
-  color: #555555;
+  color: var(--secondary-color);
 }
 
 .extra-tags {
   padding: 6px 10px;
   font-size: 13px;
   font-weight: 400;
-  color: #555555;
+  color: var(--secondary-color);
 }
 
 .row-checked {
-  background-color: #f5f5f5;
+  background-color: var(--gray-lighter);
 }
 .email-column {
   display: flex;
@@ -141,7 +149,7 @@ th {
 }
 
 .mail-data {
-  width: 20rem;
+  min-width: 20rem;
   border-right: 1px solid #ddd;
 }
 
@@ -173,8 +181,8 @@ tr {
 }
 
 .email-checkbox:checked {
-  background-color: #ff8d00;
-  border-color: #ff8d00;
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
 }
 
 .email-checkbox:checked::after {
@@ -198,5 +206,4 @@ tr {
 .mail-header {
   border: 1px solid #ddd;
 }
-
 </style>

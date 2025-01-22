@@ -23,7 +23,7 @@ export default {
 <style scoped>
 .success-message {
   margin-top: 30px;
-  color: green;
+  color: var(--success-color);
   font-size: 20px;
 }
 </style>

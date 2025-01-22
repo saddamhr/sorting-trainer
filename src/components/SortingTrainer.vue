@@ -102,7 +102,7 @@ export default {
 .sorting-trainer {
   margin: 20px auto;
   text-align: center;
-  max-width: 1050px;
+  max-width: 1200px;
 }
 
 .header {
@@ -114,12 +114,12 @@ export default {
 .header-title {
   font-weight: 700;
   size: 32px;
-  color: #000000;
+  color: var(--black);
   font-family: 'Roboto', sans-serif;
 }
 
 .start-button {
-  background-color: #ff8d00;
+  background-color: var(--primary-color);
   border: none;
   color: white;
   padding: 10px 20px;
@@ -150,6 +150,6 @@ export default {
 }
 
 .people-timer {
-  color: #000000;
+  color: var(--black);
 }
 </style>
