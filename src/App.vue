@@ -64,23 +64,24 @@
         </draggable>
       </table>
     </div>
-
-    <div v-if="isSuccess" class="success-message">
-      <h2>Congratulations! You sorted correctly!</h2>
-      <p>Your score: {{ formattedTime }}</p>
-    </div>
+        
+    <SuccessMessage
+      v-if="isSuccess"
+      :title="'Congratulations! You sorted correctly!'"
+      :score="formattedTime"
+    />
   </div>
 </template>
-
 <script>
 import { ref, computed } from 'vue'
 import { nanoid } from 'nanoid'
 import { faker } from '@faker-js/faker'
 import draggable from 'vuedraggable'
 import Modal from './components/Modal.vue'
+import SuccessMessage from './components/SuccessMessage.vue'
 
 export default {
-  components: { draggable, Modal },
+  components: { draggable, Modal, SuccessMessage },
   setup() {
     const isModalVisible = ref(false)
     const isSorting = ref(false)
