@@ -9,8 +9,14 @@
         <th>Location</th>
       </tr>
     </thead>
-    <draggable :list="items" tag="tbody" group="items" @end="onSortEnd">
-      <template #item="{ element, index }">
+    <draggable
+      :list="items"
+      tag="tbody"
+      group="items"
+      @end="onSortEnd"
+      ghost-class="ghost"
+    >
+      <template #item="{ element, index }" :key="element.email">
         <tr :class="{ 'row-checked': checkedRows[index] }">
           <td class="mail-data">
             <div class="email-column">
@@ -153,8 +159,13 @@ th {
   border-right: 1px solid #ddd;
 }
 
-.other-cols {
+.other-cols,
+.mail-data {
   min-width: 8rem;
+  cursor: move; /* fallback if grab cursor is unsupported */
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 tr {
@@ -206,4 +217,10 @@ tr {
 .mail-header {
   border: 1px solid #ddd;
 }
+
+.ghost {
+  opacity: 0.5;
+  background: var(--primary-color);
+}
+
 </style>
