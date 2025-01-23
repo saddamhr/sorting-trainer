@@ -97,10 +97,10 @@ If you need to install or update Node.js and npm, you can follow the installatio
 
 You can check the live demo and view the project in action by visiting the following link:
 
-- https://6791c2d81ccfba7bdd287cf9--sorting-trainer.netlify.app/
+- https://6791eabcae29d00008d7390d--sorting-trainer.netlify.app/
 
 ## Demo Video
 
 Watch the demo video to see the functionality in action:
 
-- https://drive.google.com/file/d/1l56vnoII-WHaGoAsEAejtE8TWV4Vt3hE/view?usp=sharing
+- https://drive.google.com/file/d/1cdf7lRbKCxPBrCJjSScgg_NX07kgzQEI/view?usp=sharing
