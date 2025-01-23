@@ -87,8 +87,6 @@ export default {
       arrowIcon: ArrowIcon,
       dragOptions: {
         scroll: true,
-        scrollSensitivity: 10,
-        scrollSpeed: 10,
       },
     }
   },
