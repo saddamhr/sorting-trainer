@@ -191,4 +191,84 @@ export default {
 .close-modal {
   cursor: pointer;
 }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 100%;
+    max-width: 400px;
+    border-radius: 8px;
+  }
+
+  .title-button-container {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 16px;
+  }
+
+  .modal-text {
+    font-size: 12px;
+  }
+
+  .modal-input {
+    font-size: 12px;
+    height: 36px;
+  }
+
+  .modal-buttons {
+    padding: 15px;
+    gap: 8px;
+  }
+
+  .modal-start-button,
+  .cancel-button {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+
+  .modal-start-button {
+    padding: 10px 25px;
+  }
+}
+
+@media (max-width: 480px) {
+  .modal-content {
+    width: 95%;
+    max-width: 320px;
+  }
+
+  .title-button-container {
+    padding: 10px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+
+  .modal-text {
+    font-size: 11px;
+  }
+
+  .modal-input {
+    font-size: 11px;
+    height: 34px;
+  }
+
+  .modal-buttons {
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .modal-start-button,
+  .cancel-button {
+    font-size: 11px;
+    padding: 8px 12px;
+  }
+
+  .modal-start-button {
+    padding: 8px 20px;
+  }
+}
 </style>

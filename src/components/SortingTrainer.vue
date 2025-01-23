@@ -152,4 +152,47 @@ export default {
 .people-timer {
   color: var(--black);
 }
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+  .header-title {
+    font-size: 28px;
+    text-align: center;
+  }
+
+  .start-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  .sorting-header p {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sorting-trainer {
+    margin: 10px auto;
+    padding: 10px;
+  }
+
+  .sorting-header p {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 24px;
+  }
+
+  .start-button {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .sorting-header p {
+    font-size: 11px;
+  }
+}
 </style>
