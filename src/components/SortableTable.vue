@@ -16,6 +16,7 @@
         group="items"
         @end="onSortEnd"
         ghost-class="ghost"
+        item-key="email"
       >
         <template #item="{ element, index }" :key="element.email">
           <tr :class="{ 'row-checked': checkedRows[index] }">
@@ -27,6 +28,7 @@
                     type="checkbox"
                     v-model="checkedRows[index]"
                     @change="toggleRow(index)"
+                    :value="checkedRows[index]"
                   />
                   <span class="value">
                     {{ element.email }}
