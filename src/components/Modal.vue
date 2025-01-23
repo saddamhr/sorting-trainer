@@ -17,7 +17,7 @@
         <input
           type="number"
           v-model.number="peopleCount"
-          min="5"
+          min="20"
           max="100"
           placeholder="Enter number of people"
           class="modal-input"
@@ -62,7 +62,7 @@ export default {
     const peopleCount = ref(20)
 
     const isPeopleCountValid = computed(
-      () => peopleCount.value >= 5 && peopleCount.value <= 100
+      () => peopleCount.value >= 20 && peopleCount.value <= 100
     )
 
     const startSorting = () => {
