@@ -54,4 +54,4 @@ You can check the live demo and view the project in action by visiting the follo
 
 Watch the demo video to see the functionality in action:
 
-- [Demo Video Link]
+- https://drive.google.com/file/d/1l56vnoII-WHaGoAsEAejtE8TWV4Vt3hE/view?usp=sharing
