@@ -6,11 +6,12 @@ This project implements the Sorting Training System as part of the Sender fronte
 
 ## Features
 
-- **User Input:** Users can enter a number between 20 and 100 to generate the list of people.
-- **Random Data Generation:** Each person has a random email, unique potatoes, and random name.
-- **Drag-and-Drop Sorting:** Users can reorder the list from most potatoes at the top to least potatoes at the bottom.
-- **Timer:** A timer starts when the list is generated and stops when the user successfully sorts the list.
-- **Success Message:** After successful sorting, the system displays the time taken as a score.
+- **Modal to enter number of people**: Users can specify the number of people to generate, between 20 and 100.
+- **Random Data Generation**: Names, emails, and unique potato counts are generated using Faker.
+- **Drag-and-Drop Sorting**: Users can reorder the list by dragging and dropping the entries based on the number of potatoes, from most to least.
+- **Auto-scroll on Drag**: As users drag an entry towards the top or bottom of the table, the table will automatically scroll to allow seamless reordering without the need to manually scroll.
+- **Timer**: The time taken to sort the list is tracked and shown once the user successfully sorts the list.
+- **Success Message**: After sorting, a success message with the user's score (time taken) is displayed.
 
 
 ## Folder Structure
