@@ -22,16 +22,19 @@ This project implements the Sorting Training System as part of the Sender fronte
 ## Installation
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/saddamhr/sorting-trainer.git
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Start the development server:
+
    ```
    npm run dev
    ```

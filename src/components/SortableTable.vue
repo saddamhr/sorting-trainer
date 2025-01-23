@@ -17,6 +17,7 @@
         @end="onSortEnd"
         ghost-class="ghost"
         item-key="email"
+        :options="dragOptions"
       >
         <template #item="{ element, index }" :key="element.email">
           <tr :class="{ 'row-checked': checkedRows[index] }">
@@ -84,6 +85,11 @@ export default {
     return {
       checkedRows: this.items.map(() => false),
       arrowIcon: ArrowIcon,
+      dragOptions: {
+        scroll: true,
+        scrollSensitivity: 10,
+        scrollSpeed: 10,
+      },
     }
   },
   watch: {
