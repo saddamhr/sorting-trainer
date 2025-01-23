@@ -12,7 +12,7 @@ This project implements the Sorting Training System as part of the Sender fronte
 - **Timer:** A timer starts when the list is generated and stops when the user successfully sorts the list.
 - **Success Message:** After successful sorting, the system displays the time taken as a score.
 
-## Tech Stack
+## Tech Stack & Best practices
 
 - **Vue.js**: For building the frontend and handling the interactions.
 - **CSS Variables**: For color theming and maintaining a consistent design.
